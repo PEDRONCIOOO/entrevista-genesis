@@ -19,8 +19,8 @@ class Viagem extends Model
         return $this->belongsTo(Veiculo::class);
     }
 
-    public function motorista()
+    public function motoristas()
     {
-        return $this->belongsTo(Motorista::class);
+        return $this->belongsToMany(Motorista::class, 'motorista_viagem');
     }
 }

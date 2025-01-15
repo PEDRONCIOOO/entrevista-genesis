@@ -27,12 +27,11 @@
     </select>
     <br><br>
 
-    <label>Motorista:</label>
-    <select name="motorista_id" required>
-        <option value="">Selecione...</option>
+    <label>Motoristas:</label>
+    <select name="motoristas[]" required multiple>
         @foreach($motoristas as $motorista)
             <option value="{{ $motorista->id }}"
-                {{ old('motorista_id') == $motorista->id ? 'selected' : '' }}>
+                {{ (collect(old('motoristas'))->contains($motorista->id)) ? 'selected' : '' }}>
                 {{ $motorista->nome }}
             </option>
         @endforeach
@@ -46,6 +45,6 @@
     <input type="number" name="km_final" value="{{ old('km_final') }}"><br><br>
 
     <button type="submit">Salvar</button>
-    <a href="/viagens">Cancelar</a>
+    <a href="{{ route('viagens.index') }}">Cancelar</a>
 </form>
 @endsection

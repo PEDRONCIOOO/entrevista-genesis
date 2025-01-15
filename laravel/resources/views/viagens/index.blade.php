@@ -16,7 +16,7 @@
         <tr>
             <th>ID</th>
             <th>Veículo</th>
-            <th>Motorista</th>
+            <th>Motoristas</th>
             <th>KM Inicial</th>
             <th>KM Final</th>
             <th>Ações</th>
@@ -26,9 +26,17 @@
         @forelse ($viagens as $viagem)
             <tr>
                 <td>{{ $viagem->id }}</td>
-                <!-- Se você fez eager loading, pode acessar -->
+                <!-- Se você fez eager loading, pode acessar o veículo -->
                 <td>{{ $viagem->veiculo->modelo ?? 'Sem veículo' }}</td>
-                <td>{{ $viagem->motorista->nome ?? 'Sem motorista' }}</td>
+                <td>
+                    @if($viagem->motoristas->count())
+                        @foreach($viagem->motoristas as $motorista)
+                            {{ $motorista->nome }}@if(!$loop->last), @endif
+                        @endforeach
+                    @else
+                        Sem motorista
+                    @endif
+                </td>
                 <td>{{ $viagem->km_inicial }}</td>
                 <td>{{ $viagem->km_final }}</td>
                 <td>

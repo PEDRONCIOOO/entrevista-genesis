@@ -28,12 +28,15 @@
     </select>
     <br><br>
 
-    <label>Motorista:</label>
-    <select name="motorista_id" required>
-        <option value="">Selecione...</option>
+    <label>Motoristas:</label>
+    <select name="motoristas[]" required multiple>
+        @php
+            // Recupera os IDs dos motoristas já vinculados à viagem
+            $selectedMotoristas = old('motoristas', $viagem->motoristas->pluck('id')->toArray());
+        @endphp
         @foreach($motoristas as $motorista)
             <option value="{{ $motorista->id }}"
-                {{ old('motorista_id', $viagem->motorista_id) == $motorista->id ? 'selected' : '' }}>
+                {{ collect($selectedMotoristas)->contains($motorista->id) ? 'selected' : '' }}>
                 {{ $motorista->nome }}
             </option>
         @endforeach

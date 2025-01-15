@@ -13,6 +13,6 @@ class Motorista extends Model
 
     public function viagens()
     {
-        return $this->hasMany(Viagem::class);
+        return $this->belongsToMany(Viagem::class, 'motorista_viagem');
     }
 }
