@@ -12,7 +12,7 @@ Veículos Modelo, Ano, Data de Aquisição, KM inicial, Renavam (único), Placa 
 
 Motoristas Nome, Data de Nascimento (>=18 anos), CNH.
 
-Viagens Associa um Veículo e um Motorista.
+Viagens Associa um Veículo e quantos motoristas estiverem disponíveis.
 
 KM Inicial no início da viagem e KM Final após a conclusão. Validações Importantes
 
